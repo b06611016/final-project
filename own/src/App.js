@@ -4,12 +4,13 @@ import useChat from './useChat'
 import { Button, Input, message, Tag } from 'antd'
 
 function App() {
-  const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive } = useChat()
+  const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive, refetch } = useChat()
 
   const [username, setUsername] = useState('')
   const [body, setBody] = useState('')
   const [enter, setEnter] = useState(false)
 
+  const [time, setTime] = useState(0)
   const bodyRef = useRef(null)
 
   const displayStatus = (s) => {
@@ -38,6 +39,13 @@ function App() {
   const chat = (
     <div className="App">
       <div className="App-title">
+        <Button type="primary" onClick={() => {
+          setsent('')
+          setreceive('')
+          setEnter(false)
+        }}>
+          Back
+        </Button>
         <h3>{sent}'s simple chat</h3>
         <Button type="primary" danger onClick={clearMessages}>
           Clear
@@ -56,13 +64,13 @@ function App() {
             ) : (
                 data.chats.map((e, i) => {
                   if (e.sent === sent)
-                  return <p className="App-message" key={i}>
-                    <Tag color="green">me</Tag> {e.body}
-                  </p>
+                    return <p className="App-message" key={i}>
+                      <Tag color="green">me</Tag> {e.body}
+                    </p>
                   else if (e.sent === receive)
-                  return <p className="App-message" key={i}>
-                    <Tag color="blue">{e.sent}</Tag> {e.body}
-                  </p>
+                    return <p className="App-message" key={i}>
+                      <Tag color="blue">{e.sent}</Tag> {e.body}
+                    </p>
                 })
               )
           )}
@@ -106,7 +114,10 @@ function App() {
           onChange={(e) => setreceive(e.target.value)} />
       </div>
       <button
-        onClick={() => setEnter(true)}
+        onClick={() => {
+          setEnter(true)
+          refetch()
+        }}
         disabled={!sent || !receive}>start chat!</button>
     </div>
   )

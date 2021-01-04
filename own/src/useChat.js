@@ -7,6 +7,7 @@ import {
   DELET_ALL_CHATS_MUTATION,
   DELETE_SUBSCIPTION
 } from './graphql'
+import { renderToStringWithData } from 'react-apollo'
 // import { w3cwebsocket as W3CWebSocket } from 'websocket'
 
 // const client = new W3CWebSocket('ws://localhost:4000')
@@ -18,8 +19,7 @@ const useChat = () => {
   const [opened, setOpened] = useState(false)
   const [sent, setSent] = useState("")
   const [receive, setReceive] = useState("")
-
-  const { loading, error, data, subscribeToMore } = useQuery(CHATS_QUERY, {variables: {sent: sent, receive: receive}})
+  const { loading, error, data, subscribeToMore, refetch } = useQuery(CHATS_QUERY, {variables: {sent: sent, receive: receive}})
   const [addChat] = useMutation(CREATE_CHAT_MUTATION)
   const [deletChats] = useMutation(DELET_ALL_CHATS_MUTATION )
   
@@ -43,42 +43,11 @@ const useChat = () => {
     subscribeToMore({
       document: CHATS_SUBSCRIPTION,
       updateQuery: (prev, { subscriptionData }) => {
-        console.log(subscriptionData.data)
-        if (!subscriptionData.data) return prev
-        const newChat = subscriptionData.data.chat.data
-        if ((newChat.sent === sent && newChat.receive === receive) || (newChat.sent === receive && newChat.receive === sent))
-          return {
-            ...prev,
-            chats: [...prev.chats, newChat]
-          };
-        else
-          return prev
+        refetch()
       }
     })
-  }, [subscribeToMore, sent, receive])
+  }, [subscribeToMore, refetch])
 
-  useEffect(() => {
-    subscribeToMore({
-      document: DELETE_SUBSCIPTION,
-      updateQuery: (prev, { subscriptionData }) => {
-        if(!subscriptionData.data) return prev
-        console.log(subscriptionData.data)
-        console.log(prev.chats)
-        return {
-          ...prev,
-          chats: [...prev.chats.filter((e) => {
-            if(e.sent === subscriptionData.data.deletechats.sent)
-              return false
-            return true
-          })]
-        }
-      }
-    })
-  }, [subscribeToMore])
-  /*const sendData = (data) => {
-    // TODO
-    //client.send(JSON.stringify(data));
-  }*/
   const handleChatSubmit = useCallback((msg) => {
     console.log(msg)
     addChat({
@@ -118,7 +87,8 @@ const useChat = () => {
     sendMessage,
     clearMessages,
     setreceive,
-    setsent
+    setsent,
+    refetch
   }
 }
 
@@ -147,5 +117,55 @@ const useChat = () => {
         break
     }
   }*/
+  /*useEffect(() => {
+    //console.log("hihi");
+    subscribeToMore({
+      document: CHATS_SUBSCRIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) return prev
+        const newChat = subscriptionData.data.chat.data
+        if ((newChat.sent === sent && newChat.receive === receive) || (newChat.sent === receive && newChat.receive === sent))
+          return {
+            ...prev,
+            chats: [...prev.chats, newChat]
+          };
+        else
+          return prev
+      }
+    })
+  }, [subscribeToMore, sent, receive])
+
+  /*useEffect(() => {
+    subscribeToMore({
+      document: DELETE_SUBSCIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        if(!subscriptionData.data) return prev
+        return {
+          ...prev,
+          chats: [...prev.chats.filter((e) => {
+            if(e.sent === subscriptionData.data.deletechats.sent)
+              return false
+            return true
+          })]
+        }
+      }
+    })
+  }, [subscribeToMore])
+
+  useEffect(() => {
+    subscribeToMore({
+      document: CHATS_SUBSCRIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        console.log('hi')
+        if (renewal && sent && receive)
+          refetch({
+            variables: {
+              sent: sent,
+              receive: receive
+            }
+          });
+      }
+    })
+  }, [subscribeToMore, refetch, renewal, sent, receive])*/
 export default useChat
 

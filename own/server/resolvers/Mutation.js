@@ -41,16 +41,26 @@ export const Mutation = {
                 }
             })
         }*/
-        context.pubsub.publish('deletechats', {
+        /*context.pubsub.publish('deletechats', {
             deletechats: {
                 mutation: "CLEAR",
                 sent: sent
             }
-        })
+        })*/
         context.database = context.database.filter((e) => {
             if(e.sent === sent)
                 return false
             return true
+        })
+        context.pubsub.publish('chat', {
+            chat: {
+                mutation: 'DELETED',
+                data: {
+                    sent: "sent",
+                    receive: "receive",
+                    body: "delete"
+                }
+            }
         })
         //console.log(context.database)
         return msg
