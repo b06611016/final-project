@@ -1,9 +1,14 @@
 type Query {
-    userCheck(username: String!, password: String!): Boolean!
+    userCheck(username: String!, password: String!): User!
 }
 
 type Mutation {
-    createUser(username: String!, password: String!): Boolean!
+    createUser(username: String!, password: String!, strength: String!): Boolean!
+}
+
+type User {
+    _isSuccess: Boolean!
+    strength: String!
 }
 
 enum MutationType {
