@@ -1,51 +1,13 @@
 type Query {
-    chats(sent: String!, receive: String!): [Chat!]!
+    userCheck(username: String!, password: String!): Boolean!
 }
 
 type Mutation {
-    createChat(request: String!, data: CreateChatInput!): Task!
-    deleteChats(request: String!, sent: String!): Clear!
-}
-
-type Subscription{
-    chat: ChatSubscriptionPayload!
-    deletechats: deleteAllSubsciptionPayload!
-}
-
-input CreateChatInput {
-   sent: String!
-   receive: String!
-   body: String!
-}
-
-type Task {
-    task: String!
-    payload: Chat!
-}
-
-type Clear{
-    type: String!
-    msg: String!
-}
-
-type Chat {
-    sent: String!
-    receive: String!
-    body: String!
+    createUser(username: String!, password: String!): Boolean!
 }
 
 enum MutationType {
     CREATED
     DELETED
     CLEAR
-}
-
-type ChatSubscriptionPayload {
-    mutation: MutationType!
-    data: Chat!
-}
-
-type deleteAllSubsciptionPayload {
-    mutation: MutationType!
-    sent: String!
 }

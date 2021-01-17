@@ -1,12 +1,12 @@
-import Message from '../models/message'
+import Account from '../models/account'
 export const Query = {
-    async chats(parent, args, context, info) {
+    async userCheck(parent, { username, password }, context, info) {
         //console.log(context.database)
-        return context.database.filter((e) => {
-            if ((e.sent === args.sent && e.receive === args.receive) || (e.sent === args.receive && e.receive === args.sent))
-                return true;
-            else
-                return false;
-        })
+        let user = await Account.find({ username: username, password: password });
+        console.log(user)
+        if (user.length === 1)
+            return true;
+        else
+            return false;
     }
 }

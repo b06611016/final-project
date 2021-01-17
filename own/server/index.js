@@ -2,7 +2,7 @@ import express from 'express'
 import { GraphQLServer, PubSub } from 'graphql-yoga'
 import { Query } from './resolvers/Query'
 import { Mutation } from './resolvers/Mutation'
-import { Subscription } from './resolvers/Subscription'
+//import { Subscription } from './resolvers/Subscription'
 require('dotenv-defaults').config()
 
 const http = require('http')
@@ -11,29 +11,15 @@ const mongoose = require('mongoose')
 const WebSocket = require('ws')
 const pubsub = new PubSub()
 
-const Message = require('./models/message')
+const Account = require('./models/account')
 
-/*const app = express();
-const server = new ApolloServer({
-  typeDefs,
-  resolvers: {
-    Query
-  },
-  content: {
-    pubsub
-  }
-});
-server.applyMiddleware({ app })*/
-let database = [];
 const server = new GraphQLServer({
   typeDefs: "./server/schema.graphql",
   resolvers: {
     Query,
-    Mutation,
-    Subscription
+    Mutation
   },
   context: {
-    database,
     pubsub
   }
 })
@@ -50,8 +36,6 @@ mongoose.connect(process.env.MONGO_URL, {
 
 const db = mongoose.connection
 
-//const wss = new WebSocket.Server({ server })
-
 db.on('error', (error) => {
   console.error(error)
 })
@@ -59,7 +43,28 @@ db.on('error', (error) => {
 db.once('open', async () => {
   console.log('MongoDB connected!')
 
-  /*wss.on('connection', ws => {
+  const PORT = process.env.port || 4000
+  //app.get('/', (req, res) => res.send('hello world'))
+
+  server.start(PORT, () => {
+    console.log(`Listening on http://localhost:${PORT}`)
+  })
+})
+
+//const wss = new WebSocket.Server({ server })
+
+/*const app = express();
+const server = new ApolloServer({
+  typeDefs,
+  resolvers: {
+    Query
+  },
+  content: {
+    pubsub
+  }
+});
+server.applyMiddleware({ app })*/
+/*wss.on('connection', ws => {
     const sendData = (data) => {
       ws.send(JSON.stringify(data))
     }
@@ -112,16 +117,3 @@ db.once('open', async () => {
     }
   })*/
   //console.log(database);
-  let data = [...await Message.find().sort({ _id: 1 })]
-  data = data.map((e) => {
-    return { sent: e.sent, receive: e.receive, body: e.body }
-  })
-  database.push(...data);
-  console.log(database)
-  const PORT = process.env.port || 4000
-  //app.get('/', (req, res) => res.send('hello world'))
-
-  server.start(PORT, () => {
-    console.log(`Listening on http://localhost:${PORT}`)
-  })
-})
