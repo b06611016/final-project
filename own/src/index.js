@@ -11,6 +11,7 @@ import { WebSocketLink } from 'apollo-link-ws'
 import { getMainDefinition } from 'apollo-utilities'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
+import 'bootstrap/dist/css/bootstrap.css'
 
 // Create an http link:
 const httpLink = new HttpLink({

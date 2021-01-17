@@ -1,17 +1,24 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
-import useChat from './useChat'
-import { Button, Input, message, Tag } from 'antd'
+//import useChat from './useChat'
+import { Buton, Input, message, Tag } from 'antd'
+import { Button } from 'react-bootstrap';
 
 function App() {
-  const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive, refetch } = useChat()
-
   const [username, setUsername] = useState('')
+  const [login, setLogin] = useState(false)
   const [body, setBody] = useState('')
-  const [enter, setEnter] = useState(false)
+  const [receiver, setReceiver] = useState('')
 
-  const [time, setTime] = useState(0)
   const bodyRef = useRef(null)
+  //const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive, refetch } = useChat()
+
+  //const [username, setUsername] = useState('')
+  //const [body, setBody] = useState('')
+  //const [enter, setEnter] = useState(false)
+
+  //const [time, setTime] = useState(0)
+  //const bodyRef = useRef(null)
 
   const displayStatus = (s) => {
     if (s.msg) {
@@ -36,7 +43,7 @@ function App() {
     }
   }
 
-  const chat = (
+  /*const chat = (
     <div className="App">
       <div className="App-title">
         <Button type="primary" onClick={() => {
@@ -120,13 +127,59 @@ function App() {
         }}
         disabled={!sent || !receive}>start chat!</button>
     </div>
+  )*/
+
+  /*useEffect(() => {
+    displayStatus(status)
+  }, [status])*/
+  
+  const loginpage = (
+    <>
+      <div className="App-title">
+        <h1>Fitting App</h1>
+      </div>
+      <div className="App-body">
+        <div className="App-row">
+          <h1>Account:</h1>
+          <Input
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ marginBottom: 10 }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                bodyRef.current.focus()
+              }
+            }}
+          ></Input>
+        </div>
+      
+        <div className="App-row">
+          <h1>Password:</h1>
+          <Input
+            rows={4}
+            value={receiver}
+            ref={bodyRef}
+            onChange={(e) => setReceiver(e.target.value)}
+            placeholder="Password"
+            onKeyDown={(e) => {
+              console.log("Key")
+            }}
+          ></Input>
+        </div>
+        <div className="App-row">
+          <Button variant="success" onClick={() => {console.log("登入")}}>
+            Log in
+          </Button>
+          <Button variant="primary" onClick={() => {console.log("創建新帳號")}}>
+            Create
+          </Button>
+        </div>
+      </div>
+    </>
   )
 
-  useEffect(() => {
-    displayStatus(status)
-  }, [status])
-
-  return <div>{enter ? chat : main}</div>
+  return <div>{loginpage}</div>
 }
 
 export default App
