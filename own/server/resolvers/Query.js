@@ -4,10 +4,11 @@ export const Query = {
         //console.log(context.database)
         let user = await Account.find({ username: username, password: password });
         console.log(user)
+        console.log(user[0].strength)
         if (user.length === 1)
             return {
                 _isSuccess: true,
-                strength: user.strength
+                strength: user[0].strength
             }
         else
             return {
