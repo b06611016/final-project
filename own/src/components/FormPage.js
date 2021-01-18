@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import './LoginPage.css'
-import PropTypes from 'prop-types';
+//import './LoginPage.css'
 import { Button } from 'react-bootstrap'
 import { Input, message, Tag } from 'antd'
 import './FormPage.css'
@@ -10,7 +9,7 @@ const FormPage = (props) => {
     const { username, password, onChange1, onChange2, onChange3, onChange4, onClick1 } = props;
     const contents = [
         {
-            options: ["high intensity", "medium intesity", "low intensity"],
+            options: ["high intensity", "medium intensity", "low intensity"],
             question: "What level do you want to choose to work out?"
         },
         {
@@ -20,48 +19,46 @@ const FormPage = (props) => {
     ];
     return (
         <>
-            <div className="LoginPage-title">
+            <div className="FormPage-title">
                 <h1>Fill in the following information to create your own account!</h1>
             </div>
-            <div className="LoginPage-body">
-                <div className="LoginPage-row">
-                    <h1>Account:</h1>
-                    <Input
-                        placeholder="Username"
-                        value={username}
-                        onChange={onChange1}
-                        style={{ marginBottom: 10 }}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter') {
-                                bodyRef.current.focus()
-                            }
-                        }}
-                    ></Input>
-                </div>
-                <div className="LoginPage-row">
-                    <h1>Password:</h1>
-                    <Input
-                        rows={4}
-                        value={password}
-                        ref={bodyRef}
-                        onChange={onChange2}
-                        placeholder="Password"
-                        onKeyDown={(e) => {
-                            console.log("Key")
-                        }}
-                    ></Input>
-                </div>
+            <div className="FormPage-body">
+
+
                 <div id="quiz-container">
+                    <div id="question-box">
+                        <div className="question-box-inner">Fill in your username and password below : </div>
+                    </div>
+                    <div className="FormPage-row">
+                        <Input
+                            placeholder="Username"
+                            value={username}
+                            onChange={onChange1}
+                            style={{ marginBottom: 10 }}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    bodyRef.current.focus()
+                                }
+                            }}
+                        ></Input>
+                        <Input
+                            rows={4}
+                            value={password}
+                            ref={bodyRef}
+                            onChange={onChange2}
+                            placeholder="Password"
+                            onKeyDown={(e) => {
+                                console.log("Key")
+                            }}
+                        ></Input>
+                    </div>
                     {contents.map((e, index) => {
                         return (
                             <React.Fragment>
                                 <div id="question-box">
                                     <div className="question-box-inner">
-                                        {"Question " + (index + 1) + " of " + contents.length}
+                                        {e.question}
                                     </div>
-                                </div>
-                                <div id="question-title">
-                                    {e.question}
                                 </div>
                                 <div id="options">
                                     {e.options.map((e, index) => {
@@ -72,7 +69,7 @@ const FormPage = (props) => {
                                                         <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
                                                         <span>{e}</span>
                                                     </div>
-                                                    <p>Suggestion: for person who exercise at least 15 days per month</p>
+                                                    <span className="options-span">Suggestion: for person who exercise at least 15 days per month</span>
                                                 </>
                                             );
                                         else if (e === "medium intensity")
@@ -82,7 +79,7 @@ const FormPage = (props) => {
                                                         <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
                                                         <span>{e}</span>
                                                     </div>
-                                                    <p>Suggestion: for person who exercise 5~10 days per month</p>
+                                                    <span className="options-span">Suggestion: for person who exercise 5~10 days per month</span>
                                                 </>
                                             );
                                         else if (e === "low intensity")
@@ -92,7 +89,7 @@ const FormPage = (props) => {
                                                         <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
                                                         <span>{e}</span>
                                                     </div>
-                                                    <p>Suggestion: for person who exercise fewer than 5 days per month</p>
+                                                    <span className="options-span">Suggestion: for person who exercise fewer than 5 days per month</span>
                                                 </>
                                             );
                                         else
@@ -108,9 +105,9 @@ const FormPage = (props) => {
                         );
                     })}
                 </div>
-                <div className="LoginPage-row">
+                <div className="FormPage-row">
                     <Button variant="primary" onClick={onClick1}>
-                        Create account
+                        Summit
                     </Button>
                 </div>
             </div>
