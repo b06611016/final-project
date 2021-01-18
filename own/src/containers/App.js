@@ -1,56 +1,56 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
-//import useChat from './useChat'
+import useLogin from './useLogin'
 import LoginPage from '../components/LoginPage'
 import FormPage from '../components/FormPage'
 import MenuPage from '../components/MenuPage'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+/*import { useQuery, useMutation } from '@apollo/react-hooks'
 import {
   USER_QUERY,
   CREATE_USER_MUTATION,
-} from '../graphql'
+} from '../graphql' */
 
 
 function App() {
-  const [username, setUsername] = useState('')
+
+  /*const [username, setUsername] = useState('')
   const [login, setLogin] = useState(false)
   const [create, setCreate] = useState(false)
-  const [body, setBody] = useState('')
   const [password, setPassword] = useState('')
-  const [strength, setStrength] = useState('')
+  const [strength, setStrength] = useState('')*/
 
-  const { loading, data, refetch } = useQuery(USER_QUERY, {
-    variables: { username: username, password: password }
-  })
-  const [addUser] = useMutation(CREATE_USER_MUTATION)
-
+  /*const { loading, data, refetch } = useQuery(USER_QUERY, {
+    variables: { username: username, password: password}
+  })*/
+  //const [addUser] = useMutation(CREATE_USER_MUTATION)
+  const { username, setUsername, login, setlogin, create, setCreate, password, setPassword, strength, setstrength, gender, setgender, createaccount, setcreate } = useLogin();
 
   //---------------------------------------------------------------------------------------------Function----------------------------------------------------------------------------
-  const checklogin = () => {
+  /*const checklogin = () => {
     refetch()
     setLogin(data.userCheck._isSuccess)
   }
 
   const Createclick = () => {
     setCreate(true)
-  }
+  }*/
   //---------------------------------------------------------------------------------------------Function----------------------------------------------------------------------------
 
 
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
   const loginpage = (
-    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={checklogin} onClick2={Createclick} username={username} password={password}></LoginPage>
+    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={setlogin} onClick2={setcreate} username={username} password={password}></LoginPage>
   )
 
   const formpage = (
-    <FormPage username={username} password={password} onChange1={() => { console.log("onchange1") }} onChange2={() => { console.log("onChange2") }} onChange3={() => { console.log("onChange3") }} onChange4={() => { console.log("onChange4") }} onClick1={() => { console.log("onClick1") }}></FormPage>
+    <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => { setstrength(e) }} onChange4={(e) => { setgender(e) }} onClick1={createaccount}></FormPage>
   )
 
   const menupage = (
     <MenuPage username={username} password={password}></MenuPage>
   )
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
-  return <div>{formpage}</div>
+  return <div>{login ? menupage : (create ? formpage : loginpage)}</div>
 }
 
 export default App

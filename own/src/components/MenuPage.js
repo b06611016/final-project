@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { Button } from 'react-bootstrap'
-import { Input, message, Tag } from 'antd'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import './MenuPage.css'
 
