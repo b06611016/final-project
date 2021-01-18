@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import './LoginPage.css'
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap'
 import { Input, message, Tag } from 'antd'
@@ -14,11 +15,11 @@ const LoginPage = (props) => {
     const { onChange1, onChange2, onClick1, onClick2, username, password } = props;
     return (
         <>
-            <div className="App-title">
+            <div className="LoginPage-title">
                 <h1>Fitting App</h1>
             </div>
-            <div className="App-body">
-                <div className="App-row">
+            <div className="LoginPage-body">
+                <div className="LoginPage-row">
                     <h1>Account:</h1>
                     <Input
                         placeholder="Username"
@@ -33,7 +34,7 @@ const LoginPage = (props) => {
                     ></Input>
                 </div>
 
-                <div className="App-row">
+                <div className="LoginPage-row">
                     <h1>Password:</h1>
                     <Input
                         rows={4}
@@ -46,7 +47,7 @@ const LoginPage = (props) => {
                         }}
                     ></Input>
                 </div>
-                <div className="App-row">
+                <div className="LoginPage-row">
                     <Button variant="success" onClick={onClick1}>
                         Log in
                     </Button>
