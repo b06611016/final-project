@@ -7,14 +7,14 @@ import './FormPage.css'
 
 const FormPage = (props) => {
     const bodyRef = useRef(null);
-    const { username, password,onChange1, onChange2, onChange3, onChange4, onClick1 } = props;
+    const { username, password, onChange1, onChange2, onChange3, onChange4, onClick1 } = props;
     const contents = [
         {
-            options: [ "high intensity", "medium intesity", "low intensity"],
+            options: ["high intensity", "medium intesity", "low intensity"],
             question: "What level do you want to choose to work out?"
         },
         {
-            options: [ "man", "women" ],
+            options: ["man", "women"],
             question: "What is your gender?"
         }
     ];
@@ -52,8 +52,8 @@ const FormPage = (props) => {
                     ></Input>
                 </div>
                 <div id="quiz-container">
-                    { contents.map((e, index) => {
-                        return(
+                    {contents.map((e, index) => {
+                        return (
                             <React.Fragment>
                                 <div id="question-box">
                                     <div className="question-box-inner">
@@ -67,32 +67,38 @@ const FormPage = (props) => {
                                     {e.options.map((e, index) => {
                                         if (e === "high intensity")
                                             return (
-                                                <div className="each-option" key = {`q${1 + 1}_${index + 1}`}>
-                                                    <input type = "radio" id = {`q${1 + 1}_${index + 1}`} name = {`option-${1}`} onChange = {onChange3}/>
-                                                    <span>{e}</span>
+                                                <>
+                                                    <div className="each-option" key={`q${1 + 1}_${index + 1}`}>
+                                                        <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
+                                                        <span>{e}</span>
+                                                    </div>
                                                     <p>Suggestion: for person who exercise at least 15 days per month</p>
-                                                </div>
+                                                </>
                                             );
                                         else if (e === "medium intensity")
                                             return (
-                                                <div className="each-option" key = {`q${1 + 1}_${index + 1}`}>
-                                                    <input type = "radio" id = {`q${1 + 1}_${index + 1}`} name = {`option-${1}`} onChange = {onChange3}/>
-                                                    <span>{e}</span>
+                                                <>
+                                                    <div className="each-option" key={`q${1 + 1}_${index + 1}`}>
+                                                        <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
+                                                        <span>{e}</span>
+                                                    </div>
                                                     <p>Suggestion: for person who exercise 5~10 days per month</p>
-                                                </div>
+                                                </>
                                             );
                                         else if (e === "low intensity")
                                             return (
-                                                <div className="each-option" key = {`q${1 + 1}_${index + 1}`}>
-                                                    <input type = "radio" id = {`q${1 + 1}_${index + 1}`} name = {`option-${1}`} onChange = {onChange3}/>
-                                                    <span>{e}</span>
+                                                <>
+                                                    <div className="each-option" key={`q${1 + 1}_${index + 1}`}>
+                                                        <input type="radio" id={`q${1 + 1}_${index + 1}`} name={`option-${1}`} onChange={onChange3} />
+                                                        <span>{e}</span>
+                                                    </div>
                                                     <p>Suggestion: for person who exercise fewer than 5 days per month</p>
-                                                </div>
+                                                </>
                                             );
                                         else
                                             return (
-                                                <div className="each-option" key = {`q${2 + 1}_${index + 1}`}>
-                                                    <input type = "radio" id = {`q${2 + 1}_${index + 1}`} name = {`option-${2}`} onChange = {onChange4}/>
+                                                <div className="each-option" key={`q${2 + 1}_${index + 1}`}>
+                                                    <input type="radio" id={`q${2 + 1}_${index + 1}`} name={`option-${2}`} onChange={onChange4} />
                                                     <span>{e}</span>
                                                 </div>
                                             );
