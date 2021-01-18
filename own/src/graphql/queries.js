@@ -1,17 +1,16 @@
 import { gql } from 'apollo-boost'
 
-export const CHATS_QUERY = gql`
-    query chats(
-        $sent: String!
-        $receive: String!
+export const USER_QUERY = gql`
+    query userCheck(
+        $username: String!
+        $password: String!
+    ){
+        userCheck(
+            username: $username
+            password: $password
         ){
-        chats(
-            sent: $sent
-            receive: $receive
-        ){
-            sent
-            receive
-            body
+            _isSuccess
+            strength
         }
     }
 `

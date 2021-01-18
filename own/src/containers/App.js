@@ -8,6 +8,7 @@ import { Buton, Input, message, Tag } from 'antd'
 function App() {
   const [username, setUsername] = useState('')
   const [login, setLogin] = useState(false)
+<<<<<<< HEAD:own/src/containers/App.js
   const [body, setBody] = useState('')
   const [password, setPassword] = useState('')
 
@@ -20,6 +21,11 @@ function App() {
 
   //const [time, setTime] = useState(0)
   //const bodyRef = useRef(null)
+=======
+  
+  const bodyRef = useRef(null)
+  
+>>>>>>> fe91e96133d8ccd933d84b619f21fa0049c720ea:own/src/App.js
 
   const displayStatus = (s) => {
     if (s.msg) {
@@ -44,9 +50,56 @@ function App() {
     }
   }
 
+<<<<<<< HEAD:own/src/containers/App.js
 
   const loginpage = (
     <LoginPage onChange1={() => {console.log("onchange1")}} onChange2={() => {console.log("onchange2")}} onClick1={() => {console.log("onclick1")}} onClick2={() => {console.log("onclick2")}} username={username} password={password}></LoginPage>    
+=======
+  const loginpage = (
+    <>
+      <div className="App-title">
+        <h1>Fitting App</h1>
+      </div>
+      <div className="App-body">
+        <div className="App-row">
+          <h1>Account:</h1>
+          <Input
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            style={{ marginBottom: 10 }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                bodyRef.current.focus()
+              }
+            }}
+          ></Input>
+        </div>
+      
+        <div className="App-row">
+          <h1>Password:</h1>
+          <Input
+            rows={4}
+            value={receiver}
+            ref={bodyRef}
+            onChange={(e) => setReceiver(e.target.value)}
+            placeholder="Password"
+            onKeyDown={(e) => {
+              console.log("Key")
+            }}
+          ></Input>
+        </div>
+        <div className="App-row">
+          <Button variant="success" onClick={() => {console.log("登入")}}>
+            Log in
+          </Button>
+          <Button variant="primary" onClick={() => {console.log("創建新帳號")}}>
+            Create
+          </Button>
+        </div>
+      </div>
+    </>
+>>>>>>> fe91e96133d8ccd933d84b619f21fa0049c720ea:own/src/App.js
   )
 
   return <div>{loginpage}</div>
@@ -54,8 +107,22 @@ function App() {
 
 export default App
 
+<<<<<<< HEAD:own/src/containers/App.js
 
   /*const chat = (
+=======
+//const [body, setBody] = useState('')
+  //const [receiver, setReceiver] = useState('')
+
+  /*cons//const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive, refetch } = useChat()
+
+  //const [username, setUsername] = useState('')
+  //const [body, setBody] = useState('')
+  //const [enter, setEnter] = useState(false)
+
+  //const [time, setTime] = useState(0)
+  //const bodyRef = useRef(null)t chat = (
+>>>>>>> fe91e96133d8ccd933d84b619f21fa0049c720ea:own/src/App.js
     <div className="App">
       <div className="App-title">
         <Button type="primary" onClick={() => {
@@ -143,4 +210,9 @@ export default App
 
   /*useEffect(() => {
     displayStatus(status)
+<<<<<<< HEAD:own/src/containers/App.js
   }, [status])*/
+=======
+  }, [status])*/
+  
+>>>>>>> fe91e96133d8ccd933d84b619f21fa0049c720ea:own/src/App.js

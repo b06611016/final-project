@@ -10,7 +10,11 @@ const AccountSchema = new Schema({
 	password: {
 		type: String,
 		required: [true, 'Password field is required.']
-	}
+    },
+    strength: {
+        type: String,
+        required: [true, 'Strength field is required. ']
+    }
 })
 
 // Creating a table within database with the defined schema
