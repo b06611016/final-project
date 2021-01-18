@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 //import useChat from './useChat'
 import LoginPage from '../components/LoginPage'
 import FormPage from '../components/FormPage'
+import MenuPage from '../components/MenuPage'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import {
   USER_QUERY,
@@ -19,7 +20,7 @@ function App() {
   const [strength, setStrength] = useState('')
 
   const { loading, data, refetch } = useQuery(USER_QUERY, {
-    variables: { username: username, password: password}
+    variables: { username: username, password: password }
   })
   const [addUser] = useMutation(CREATE_USER_MUTATION)
 
@@ -38,14 +39,18 @@ function App() {
 
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
   const loginpage = (
-    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={checklogin} onClick2={Createclick} username={username} password={password}></LoginPage>    
+    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={checklogin} onClick2={Createclick} username={username} password={password}></LoginPage>
   )
 
   const formpage = (
-    <FormPage username={username} password={password} onChange1={() => {console.log("onchange1")}} onChange2={() => {console.log("onChange2")}} onChange3={() => {console.log("onChange3")}} onChange4={() => {console.log("onChange4")}} onClick1={() => {console.log("onClick1")}}></FormPage>
+    <FormPage username={username} password={password} onChange1={() => { console.log("onchange1") }} onChange2={() => { console.log("onChange2") }} onChange3={() => { console.log("onChange3") }} onChange4={() => { console.log("onChange4") }} onClick1={() => { console.log("onClick1") }}></FormPage>
+  )
+
+  const menupage = (
+    <MenuPage username={username} password={password}></MenuPage>
   )
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
-  return <div>{create?formpage:loginpage}</div>
+  return <div>{formpage}</div>
 }
 
 export default App
