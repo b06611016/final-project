@@ -33,12 +33,6 @@ body {
   background-color: #ECECEC;
 }
 
-#question-title {
-  width: 700px;
-  font-size: 24px;
-  font-weight: bolder;
-  margin-bottom: 20px;
-}
 
 #options {
   width: 700px;
@@ -117,23 +111,12 @@ body {
   width: 40%;
 }
 
-.FormPage-body h1 {
-  font-size:30px;
-}
-
-
 .FormPage-row {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 15px;
   margin-bottom: 15px;
-}
-
-.FormPage-row h1 {
-  margin: 0;
-  margin-right: 20px;
-  font-size: 2em;
 }
 
 .FormPage-row Input {

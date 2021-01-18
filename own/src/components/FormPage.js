@@ -34,15 +34,13 @@ const FormPage = (props) => {
                             placeholder="Username"
                             value={username}
                             onChange={onChange1}
-                            style={{ marginBottom: 10 }}
                             onKeyDown={(e) => {
                                 if (e.key === 'Enter') {
                                     bodyRef.current.focus()
                                 }
                             }}
                         ></Input>
-                        <Input
-                            rows={4}
+                        <Input                           
                             value={password}
                             ref={bodyRef}
                             onChange={onChange2}
