@@ -33,7 +33,6 @@ body {
   background-color: #ECECEC;
 }
 
-
 #options {
   width: 700px;
   padding: 10px 0;
@@ -108,7 +107,7 @@ body {
   height: 100%;
   border:1px solid #000;
   margin: auto;
-  width: 40%;
+  width: 720px;
 }
 
 .FormPage-row {

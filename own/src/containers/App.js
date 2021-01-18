@@ -3,14 +3,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import useLogin from './useLogin'
 import LoginPage from '../components/LoginPage'
 import FormPage from '../components/FormPage'
-//import { useQuery, useMutation } from '@apollo/react-hooks'
-/*import {
+import MenuPage from '../components/MenuPage'
+/*import { useQuery, useMutation } from '@apollo/react-hooks'
+import {
   USER_QUERY,
   CREATE_USER_MUTATION,
-} from '../graphql'*/
+} from '../graphql' */
 
 
 function App() {
+
   /*const [username, setUsername] = useState('')
   const [login, setLogin] = useState(false)
   const [create, setCreate] = useState(false)
@@ -37,14 +39,18 @@ function App() {
 
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
   const loginpage = (
-    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={setlogin} onClick2={setcreate} username={username} password={password}></LoginPage>    
+    <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={setlogin} onClick2={setcreate} username={username} password={password}></LoginPage>
   )
 
   const formpage = (
-    <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => {setstrength(e)}} onChange4={(e) => {setgender(e)}} onClick1={createaccount}></FormPage>
+    <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => { setstrength(e) }} onChange4={(e) => { setgender(e) }} onClick1={createaccount}></FormPage>
+  )
+
+  const menupage = (
+    <MenuPage username={username} password={password}></MenuPage>
   )
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
-  return <div>{login? "successfully log in!":(create? formpage:loginpage)}</div>
+  return <div>{login ? menupage : (create ? formpage : loginpage)}</div>
 }
 
 export default App

@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 //import './LoginPage.css'
 import { Button } from 'react-bootstrap'
-import { Input, message, Tag } from 'antd'
+import { Input } from 'antd'
 import './FormPage.css'
 
 const FormPage = (props) => {
@@ -40,7 +40,7 @@ const FormPage = (props) => {
                                 }
                             }}
                         ></Input>
-                        <Input                           
+                        <Input
                             value={password}
                             ref={bodyRef}
                             onChange={onChange2}

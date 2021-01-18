@@ -12,6 +12,7 @@ import { getMainDefinition } from 'apollo-utilities'
 import * as serviceWorker from './serviceWorker'
 import 'antd/dist/antd.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'react-circular-progressbar/dist/styles.css'
 
 // Create an http link:
 const httpLink = new HttpLink({
