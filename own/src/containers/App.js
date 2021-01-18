@@ -1,16 +1,17 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
 //import useChat from './useChat'
+import LoginPage from '../components/LoginPage'
 import { Buton, Input, message, Tag } from 'antd'
-import { Button } from 'react-bootstrap';
+
 
 function App() {
   const [username, setUsername] = useState('')
   const [login, setLogin] = useState(false)
   const [body, setBody] = useState('')
-  const [receiver, setReceiver] = useState('')
+  const [password, setPassword] = useState('')
 
-  const bodyRef = useRef(null)
+  
   //const { sent, receive, status, opened, data, sendMessage, clearMessages, setsent, setreceive, refetch } = useChat()
 
   //const [username, setUsername] = useState('')
@@ -42,6 +43,17 @@ function App() {
       }
     }
   }
+
+
+  const loginpage = (
+    <LoginPage onChange1={() => {console.log("onchange1")}} onChange2={() => {console.log("onchange2")}} onClick1={() => {console.log("onclick1")}} onClick2={() => {console.log("onclick2")}} username={username} password={password}></LoginPage>    
+  )
+
+  return <div>{loginpage}</div>
+}
+
+export default App
+
 
   /*const chat = (
     <div className="App">
@@ -132,54 +144,3 @@ function App() {
   /*useEffect(() => {
     displayStatus(status)
   }, [status])*/
-  
-  const loginpage = (
-    <>
-      <div className="App-title">
-        <h1>Fitting App</h1>
-      </div>
-      <div className="App-body">
-        <div className="App-row">
-          <h1>Account:</h1>
-          <Input
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ marginBottom: 10 }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                bodyRef.current.focus()
-              }
-            }}
-          ></Input>
-        </div>
-      
-        <div className="App-row">
-          <h1>Password:</h1>
-          <Input
-            rows={4}
-            value={receiver}
-            ref={bodyRef}
-            onChange={(e) => setReceiver(e.target.value)}
-            placeholder="Password"
-            onKeyDown={(e) => {
-              console.log("Key")
-            }}
-          ></Input>
-        </div>
-        <div className="App-row">
-          <Button variant="success" onClick={() => {console.log("登入")}}>
-            Log in
-          </Button>
-          <Button variant="primary" onClick={() => {console.log("創建新帳號")}}>
-            Create
-          </Button>
-        </div>
-      </div>
-    </>
-  )
-
-  return <div>{loginpage}</div>
-}
-
-export default App
