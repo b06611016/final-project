@@ -11,6 +11,19 @@ export const USER_QUERY = gql`
         ){
             _isSuccess
             strength
+            completion
+        }
+    }
+`
+export const EXERCISES_QUERY = gql`
+    query queryExercises(
+        $strength: String!
+    ){
+        queryExercises(
+            strength: $strength
+        ){
+            exercise
+            sec
         }
     }
 `
