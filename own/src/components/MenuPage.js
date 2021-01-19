@@ -7,7 +7,7 @@ const MenuPage = (props) => {
     const { username, days, strength, completion, onclick } = props;
 
     let contents = [];
-    for (let i = 0; i < days; ++i){
+    for (let i = 0; i < days; ++i) {
         if (i < completion)
             contents.push(100);
         else
@@ -27,8 +27,8 @@ const MenuPage = (props) => {
                     if (index === completion)
                         return (
                             <Button variant="secondary" key={index} id={index} onClick={onclick}>
-                                <p id="p">{"Day " + (index + 1)}</p>
-                                <CircularProgressbar id="cb" value={e} text={`${e}%`} styles={buildStyles({
+                                <p className="P" id={index}>{"Day " + (index + 1)}</p>
+                                <CircularProgressbar id={index} className="CB" value={e} text={`${e}%`} styles={buildStyles({
                                     textColor: "gold",
                                     pathColor: "gold"
                                 })} />
@@ -37,8 +37,8 @@ const MenuPage = (props) => {
                     else
                         return (
                             <Button variant="secondary" key={index} id={index} onClick={onclick} disabled>
-                                <p id="p">{"Day " + (index + 1)}</p>
-                                <CircularProgressbar id="cb" value={e} text={`${e}%`} styles={buildStyles({
+                                <p id={index} className="P">{"Day " + (index + 1)}</p>
+                                <CircularProgressbar id={index} className="CB" value={e} text={`${e}%`} styles={buildStyles({
                                     textColor: "gold",
                                     pathColor: "gold"
                                 })} />

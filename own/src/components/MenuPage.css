@@ -41,7 +41,13 @@
     border-radius: 30px 30px 30px 30px;
 }
 
-#p {   
+/*#p {   
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 300%; 
+}*/
+
+.P {   
     margin-top: 5px;
     margin-bottom: 5px;
     width: 300%; 

@@ -25,7 +25,7 @@ const useMenu = () => {
     useEffect(() => {
         fetchExerciseSchedule();
         console.log(data)
-        if (data){
+        if (data) {
             setDays(data.queryExercises.length);
             console.log(data.queryExercises)
         }
@@ -34,10 +34,17 @@ const useMenu = () => {
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e)=>{setDay(parseInt(e.target.id) + 1)}}/>
-        else{
-            if(data && day > 0)
-                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day}/>;
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e) => {
+                let node = e.target
+                while (node.tagName != "BUTTON") {
+                    node = node.parentNode
+                }
+                setDay(parseInt(node.id) + 1)
+
+            }} />
+        else {
+            if (data && day > 0)
+                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} />;
         }
     }
     //console.log("day: " + day)
