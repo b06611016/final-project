@@ -6,6 +6,7 @@ import FormPage from '../components/FormPage'
 import MenuPage from '../components/MenuPage'
 import DayPage from '../components/DayPage'
 import CountingPage from '../components/CountingPage'
+import RelaxPage from '../components/RelaxPage'
 /*import { useQuery, useMutation } from '@apollo/react-hooks'
 import {
   USER_QUERY,
@@ -59,9 +60,13 @@ function App() {
   const countingpage = (
     <CountingPage username={username} password={password}></CountingPage>
   )
+
+  const relaxpage = (
+    <RelaxPage username={username} password={password}></RelaxPage>
+  )
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
   //return <div>{login ? menupage : (create ? formpage : loginpage)}</div>
-  return <div>{daypage}</div>
+  return <div>{relaxpage}</div>
 }
 
 export default App
