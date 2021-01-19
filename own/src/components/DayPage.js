@@ -5,22 +5,22 @@ import gifarr from "../img/images"
 import imgCheck from "../img/check.png"
 
 const DayPage = (props) => {
-    const { username, password } = props;
-    const contents = ["Push-ups", "Crunch"];
+    const { day, exercises, strength } = props;
+    const names = ["Push-ups", "Crunch"];
 
     return (
         <>
             <div className="DayPage-title">
-                <h1 id="h1">{"Day 1"}</h1>
-                <p>{"Strength level : " + "High intensity"}</p>
+                <h1 id="h1">{"Day " + day}</h1>
+                <p>{"Strength level : " + strength + " intensity"}</p>
             </div>
             <div className="DayPage-body">
-                {contents.map((e, index) => {
+                {exercises.map((e, index) => {
                     return (
                         <Button variant="light" key={index}>
                             <img src={gifarr[index]} className="img"></img>
                             <div className="inButton">
-                                <p id="p">{e}</p>
+                                <p id="p">{names[e - 1]}</p>
                             </div>
                             <img src={imgCheck} className="imgCheck"></img>
                         </Button>

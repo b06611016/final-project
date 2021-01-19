@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { USER_QUERY } from '../graphql'
 import CreateUser from './createUser'
+import useMenu from './useMenu'
 import { message } from 'antd'
+import LoginPage from '../components/LoginPage'
+import FormPage from '../components/FormPage'
 
 const useLogin = () => {
-    const [username, setUsername] = useState('');
-    const [login, setLogin] = useState(false);
+    //const [username, setUsername] = useState('');
+    //const [login, setLogin] = useState(false);
     const [create, setCreate] = useState(false);
     const [password, setPassword] = useState('');
-    const [strength, setStrength] = useState('');
+    //const [strength, setStrength] = useState('');
     const [status, setStatus] = useState('');
     const [gender, setGender] = useState('');
     const [times, setTimes] = useState(0);
-    const [completion, setCompletion] = useState(0);
+    //const [completion, setCompletion] = useState(0);
 
+    const { username, setUsername, completion, setCompletion, strength, setStrength, login, setLogin, menupage } = useMenu();
     const { loading, data, refetch } = useQuery(USER_QUERY, {
         variables: { username: username, password: password }
     });
@@ -60,10 +64,13 @@ const useLogin = () => {
             return;
         }
         refetch();
+        if (!data)
+            return;
         if (data.userCheck._isSuccess) {
             setLogin(true);
             setStrength(data.userCheck.strength);
             setCompletion(data.userCheck.completion);
+            return;
         }
         else {
             setStatus('invalid');
@@ -73,6 +80,8 @@ const useLogin = () => {
                 setTimes(1);
         }
     };
+
+
     const setaccount = useCallback(() => {
         if (!createOutcome)
             return;
@@ -90,7 +99,7 @@ const useLogin = () => {
             setCreate(false);
             setPassword('')
         }
-    },[createOutcome]);
+    }, [createOutcome]);
 
     useEffect(() => {
         setaccount();
@@ -138,7 +147,15 @@ const useLogin = () => {
         setUsername('');
     };
 
-    return { username, setUsername, login, setlogin, create, setCreate, password, setPassword, strength, setstrength, gender, setgender, createaccount, setcreate };
+    const loginpage = (
+        <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={setlogin} onClick2={setcreate} username={username} password={password}></LoginPage>
+    )
+
+    const formpage = (
+        <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => { setstrength(e) }} onChange4={(e) => { setgender(e) }} onClick1={createaccount}></FormPage>
+    )
+
+    return { loginpage, login, create, formpage, menupage };
 }
 
 export default useLogin;
