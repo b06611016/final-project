@@ -31,17 +31,17 @@ const useMenu = () => {
         }
     }, [fetchExerciseSchedule, data]);
 
+    const clickday = (e) => {
+        let node = e.target
+        while (node.tagName != "BUTTON") {
+            node = node.parentNode
+        }
+        setDay(parseInt(node.id) + 1)
+    }
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e) => {
-                let node = e.target
-                while (node.tagName != "BUTTON") {
-                    node = node.parentNode
-                }
-                setDay(parseInt(node.id) + 1)
-
-            }} />
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e) => {clickday(e)}} />
         else {
             if (data && day > 0)
                 return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} />;
