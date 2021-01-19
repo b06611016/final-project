@@ -1,0 +1,67 @@
+.DayPage-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.DayPage-title h1 {
+    font-size: 2em;
+}
+
+.DayPage-title p {
+    font-size: 0.8em;
+    color: plum;
+}
+
+.DayPage-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*line-height: 8vh;  */
+    height: 100%;
+    /*border: 1px solid #000;*/
+    margin: auto;
+    width: 90%; 
+}
+
+.DayPage-body Button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 40%;
+    height: 20%;
+    margin: 0;
+    margin-right: 20px;
+    margin-left: 20px;
+    font-size: 2em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 30px 30px 30px 30px;
+}
+
+#p {   
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 20px;
+    width: 300%; 
+}
+
+.img {
+    max-width: 150px;
+    max-height: 90px;
+}
+
+.inButton {
+    text-align: left;
+}
+
+.imgCheck {
+    max-width: 50px;
+    max-height: 50px;
+    float: right;
+    position: absolute;
+    right:33%;
+}
