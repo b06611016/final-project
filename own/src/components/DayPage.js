@@ -20,7 +20,7 @@ const DayPage = (props) => {
                         <Button variant="light" key={index}>
                             <img src={gifarr[index]} className="img"></img>
                             <div className="inButton">
-                                <p id="p">{names[e - 1]}</p>
+                                <p id="p">{names[e]}</p>
                             </div>
                             <img src={imgCheck} className="imgCheck"></img>
                         </Button>

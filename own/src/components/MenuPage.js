@@ -14,8 +14,6 @@ const MenuPage = (props) => {
             contents.push(0);
     }
 
-    console.log(completion);
-    console.log(days)
 
     return (
         <>
@@ -28,7 +26,7 @@ const MenuPage = (props) => {
                     console.log(index);
                     if (index === completion)
                         return (
-                            <Button variant="secondary" key={index} onClick={onclick}>
+                            <Button variant="secondary" key={index} id={index} onClick={onclick}>
                                 <p id="p">{"Day " + (index + 1)}</p>
                                 <CircularProgressbar id="cb" value={e} text={`${e}%`} styles={buildStyles({
                                     textColor: "gold",
@@ -38,7 +36,7 @@ const MenuPage = (props) => {
                         );
                     else
                         return (
-                            <Button variant="secondary" key={index} onClick={onclick} disabled>
+                            <Button variant="secondary" key={index} id={index} onClick={onclick} disabled>
                                 <p id="p">{"Day " + (index + 1)}</p>
                                 <CircularProgressbar id="cb" value={e} text={`${e}%`} styles={buildStyles({
                                     textColor: "gold",
