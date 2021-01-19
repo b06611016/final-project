@@ -32,10 +32,11 @@ const useMenu = () => {
     }, [fetchExerciseSchedule, data]);
 
     const menupage = () => {
+        //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e)=>{console.log(e)}}/>
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e)=>{setDay(parseInt(e.target.id) + 1)}}/>
         else{
-            if(data)
+            if(data && day > 0)
                 return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day}/>;
         }
     }

@@ -9,28 +9,8 @@ import useLogin from './useLogin'
 //import RelaxPage from '../components/RelaxPage'
 
 function App() {
-
-  /*const [username, setUsername] = useState('')
-  const [login, setLogin] = useState(false)
-  const [create, setCreate] = useState(false)
-  const [password, setPassword] = useState('')
-  const [strength, setStrength] = useState('')*/
-
-  /*const { loading, data, refetch } = useQuery(USER_QUERY, {
-    variables: { username: username, password: password}
-  })*/
-  //const [addUser] = useMutation(CREATE_USER_MUTATION)
   const { loginpage, login, create, formpage, menupage } = useLogin();
 
-  //---------------------------------------------------------------------------------------------Function----------------------------------------------------------------------------
-  /*const checklogin = () => {
-    refetch()
-    setLogin(data.userCheck._isSuccess)
-  }
-
-  const Createclick = () => {
-    setCreate(true)
-  }*/
   //---------------------------------------------------------------------------------------------Function----------------------------------------------------------------------------
 
 
