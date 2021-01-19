@@ -17,6 +17,9 @@ const MenuPage = (props) => {
 
     return (
         <>
+            <Button variant="outline-primary" onClick={console.log("onClick2")} className="logout">
+                Log out
+            </Button>
             <div className="MenuPage-title">
                 <h1 id="h1">Let's workout!</h1>
                 <p>{"Strength level : " + strength + " intensity"}</p>

@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap'
 import './DayPage.css'
 import gifarr from "../img/images"
 import imgCheck from "../img/check.png"
+import returnimg from "../img/return.png"
 
 const DayPage = (props) => {
     const { day, exercises, strength } = props;
@@ -10,6 +11,7 @@ const DayPage = (props) => {
 
     return (
         <>
+            <img src={returnimg} className="return" type="button" onClick={console.log("1")}></img>
             <div className="DayPage-title">
                 <h1 id="h1">{"Day " + day}</h1>
                 <p>{"Strength level : " + strength + " intensity"}</p>
