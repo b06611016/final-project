@@ -1,5 +1,6 @@
 type Query {
     userCheck(username: String!, password: String!): User!
+    queryExercises(strength: String!): [DailyExercise]!
 }
 
 type Mutation {
@@ -9,10 +10,10 @@ type Mutation {
 type User {
     _isSuccess: Boolean!
     strength: String!
+    completion: Int!
 }
 
-enum MutationType {
-    CREATED
-    DELETED
-    CLEAR
+type DailyExercise {
+    exercise: [String!]!
+    sec: [Int!]!
 }

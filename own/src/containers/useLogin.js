@@ -13,6 +13,7 @@ const useLogin = () => {
     const [status, setStatus] = useState('');
     const [gender, setGender] = useState('');
     const [times, setTimes] = useState(0);
+    const [completion, setCompletion] = useState(0);
 
     const { loading, data, refetch } = useQuery(USER_QUERY, {
         variables: { username: username, password: password }
@@ -62,6 +63,7 @@ const useLogin = () => {
         if (data.userCheck._isSuccess) {
             setLogin(true);
             setStrength(data.userCheck.strength);
+            setCompletion(data.userCheck.completion);
         }
         else {
             setStatus('invalid');

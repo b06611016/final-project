@@ -5,7 +5,7 @@ export const Mutation = {
         let count = await Account.find({ username: username }).count();
         if (count > 0)
             return false;
-        await Account.create({ username: username, password: password, strength: strength });
+        await Account.create({ username: username, password: password, strength: strength, completion: 0 });
         return true;
     }
 }

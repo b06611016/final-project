@@ -1,5 +1,3 @@
 export { USER_QUERY } from './queries'
 export { CREATE_USER_MUTATION } from './mutation'
-//export { CHATS_SUBSCRIPTION } from './subscription'
-//export { DELET_ALL_CHATS_MUTATION } from './mutation'
-//export { DELETE_SUBSCIPTION } from './subscription'
+export { EXERCISES_QUERY } from './queries'
