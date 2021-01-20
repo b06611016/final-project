@@ -14,8 +14,8 @@ const medium = [
 
 const high = [
     {
-        exercise: [0, 1],
-        sec: [15, 15]
+        exercise: [1, 0],
+        sec: [10, 15]
     },
     {
         exercise: [0, 1],

@@ -20,7 +20,7 @@ const DayPage = (props) => {
                 {exercises.map((e, index) => {
                     //console.log(e)
                     return (
-                        <Button variant="light" key={index} id={e} onClick={onclick2}>
+                        <Button variant="light" key={index} id={index} onClick={onclick2}>
                             <img src={gifarr[e]} className="img"></img>
                             <div className="inButton">
                                 <p id="p">{names[e]}</p>

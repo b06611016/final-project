@@ -5,7 +5,7 @@ import './MenuPage.css'
 import { message } from 'antd'
 
 const MenuPage = (props) => {
-    const { username, days, strength, completion, onclick1, onclick2 } = props;
+    const { username, days, strength, completion, onclick1, onclick2, low, medium, high, clear } = props;
     const [nav, setNav] = useState(false)
     const [status, setStatus] = useState('');
     const [times, setTimes] = useState(0);
@@ -92,13 +92,13 @@ const MenuPage = (props) => {
         <div className="setting">
             <p>{"Username: " + username}</p>
             <p>{"Strength: " + strength}</p>
-            <Button variant="warning" onClick={() => { console.log("reset") }} id="reset">
+            <Button variant="warning" onClick={clear} id="reset">
                 Reset your progress to 0%
             </Button>
             <DropdownButton title="Reset your strength" id="reset">
-                <Dropdown.Item onClick={() => { console.log("1") }}>Low</Dropdown.Item>
-                <Dropdown.Item onClick={() => { console.log("2") }}>Medium</Dropdown.Item>
-                <Dropdown.Item onClick={() => { console.log("3") }}>High</Dropdown.Item>
+                <Dropdown.Item onClick={low}>Low</Dropdown.Item>
+                <Dropdown.Item onClick={medium}>Medium</Dropdown.Item>
+                <Dropdown.Item onClick={high}>High</Dropdown.Item>
             </DropdownButton>
         </div>
     )

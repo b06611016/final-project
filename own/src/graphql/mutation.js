@@ -24,3 +24,23 @@ export const UPDATE_COMPLETION = gql`
         )
     }
 `
+export const RESET_COMPLETION = gql`
+    mutation resetCompletion(
+        $username: String!
+    ){
+        resetCompletion(
+            username: $username
+        )
+    }
+`
+export const CHANGE_STRENGTH = gql`
+    mutation changeStrength(
+        $username: String!
+        $strength: String!
+    ){
+        changeStrength(
+            username: $username
+            strength: $strength
+        )
+    }
+`
