@@ -6,12 +6,12 @@ import imgCheck from "../img/check.png"
 import returnimg from "../img/return.png"
 
 const DayPage = (props) => {
-    const { day, exercises, strength } = props;
+    const { day, exercises, strength, onclick } = props;
     const names = ["Push-ups", "Crunch"];
 
     return (
         <>
-            <img src={returnimg} className="return" type="button" onClick={console.log("1")}></img>
+            <img src={returnimg} className="return" type="button" onClick={onclick}></img>
             <div className="DayPage-title">
                 <h1 id="h1">{"Day " + day}</h1>
                 <p>{"Strength level : " + strength + " intensity"}</p>
