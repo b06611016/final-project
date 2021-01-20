@@ -1,11 +1,11 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Nav, Navbar, DropdownButton, Dropdown } from 'react-bootstrap'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import './MenuPage.css'
 
 const MenuPage = (props) => {
     const { username, days, strength, completion, onclick1, onclick2 } = props;
-
+    const [nav, setNav] = useState(false)
     let contents = [];
     for (let i = 0; i < days; ++i) {
         if (i < completion)
@@ -14,12 +14,9 @@ const MenuPage = (props) => {
             contents.push(0);
     }
 
-
-    return (
+    const menu = (
         <>
-            <Button variant="outline-primary" onClick={onclick1} className="logout">
-                Log out
-            </Button>
+
             <div className="MenuPage-title">
                 <h1 id="h1">Let's workout!</h1>
                 <p>{"Strength level : " + strength + " intensity"}</p>
@@ -49,6 +46,38 @@ const MenuPage = (props) => {
                         );
                 })}
             </div>
+        </>
+    )
+
+    const setting = (
+        <div className="setting">
+            <p>{"Username: " + username}</p>
+            <p>{"Strength: " + strength}</p>
+            <Button variant="warning" onClick={() => { console.log("reset") }} id="reset">
+                Reset your progress to 0%
+            </Button>
+            <DropdownButton title="Reset your strength" id="reset">
+                <Dropdown.Item onClick={() => { console.log("1") }}>Low</Dropdown.Item>
+                <Dropdown.Item onClick={() => { console.log("2") }}>Medium</Dropdown.Item>
+                <Dropdown.Item onClick={() => { console.log("3") }}>High</Dropdown.Item>
+            </DropdownButton>
+        </div>
+    )
+
+    return (
+        <>
+            <Navbar bg="" expand="lg" id="navbar">
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link onClick={() => { setNav(false) }}>Menu</Nav.Link>
+                        <Nav.Link onClick={() => { setNav(true) }}>Profile</Nav.Link>
+                        <Button variant="outline-primary" onClick={onclick1} className="logout">
+                            Log out
+                        </Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+            {nav ? setting : menu}
         </>
     )
 }

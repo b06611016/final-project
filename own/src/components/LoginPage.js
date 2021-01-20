@@ -14,7 +14,7 @@ const LoginPage = (props) => {
     const bodyRef = useRef(null)
     const { onChange1, onChange2, onClick1, onClick2, username, password } = props;
     return (
-        <>
+        <div className="LoginPage">
             <div className="LoginPage-title">
                 <h1>Fitting App</h1>
             </div>
@@ -37,7 +37,6 @@ const LoginPage = (props) => {
                 <div className="LoginPage-row">
                     <h1>Password:</h1>
                     <Input
-                        rows={4}
                         type="password"
                         value={password}
                         ref={bodyRef}
@@ -57,7 +56,7 @@ const LoginPage = (props) => {
                     </Button>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
