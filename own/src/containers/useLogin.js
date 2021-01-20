@@ -70,6 +70,7 @@ const useLogin = () => {
             setLogin(true);
             setStrength(data.userCheck.strength);
             setCompletion(data.userCheck.completion);
+            setPassword('');
             return;
         }
         else {
@@ -97,7 +98,7 @@ const useLogin = () => {
             //console.log(createOutcome);
             setLogin(true);
             setCreate(false);
-            setPassword('')
+            setPassword('');
         }
     }, [createOutcome]);
 

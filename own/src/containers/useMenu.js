@@ -38,13 +38,23 @@ const useMenu = () => {
         }
         setDay(parseInt(node.id) + 1)
     }
+
+    const reset = () => {
+        setUsername('');
+        setCompletion(0);
+        setStrength('');
+        setLogin(false);
+        setDays(0);
+        setDay(0);
+    }
+
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick={(e) => {clickday(e)}} />
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => {clickday(e)}} />
         else {
             if (data && day > 0)
-                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} />;
+                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} onclick={() => {setDay(0)}}/>;
         }
     }
     //console.log("day: " + day)
