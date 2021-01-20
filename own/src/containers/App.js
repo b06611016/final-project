@@ -29,7 +29,7 @@ function App() {
   )*/
   //-----------------------------------------------------------------------------------------------Page------------------------------------------------------------------------------
   //return <div>{login ? menupage : (create ? formpage : loginpage)}</div>
-  return <div>{login ? menupage() : (create ? formpage : loginpage)}</div>
+  return <div className="App">{login ? menupage() : (create ? formpage : loginpage)}</div>
 }
 
 export default App
