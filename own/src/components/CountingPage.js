@@ -8,7 +8,7 @@ import { message } from 'antd'
 
 const CountingPage = (props) => {
     const { limit, index, onclick1, onclick2 } = props;
-    const worktype = ["Push ups", "Crunch"]
+    const worktype = ["Push-ups", "Crunch", "Dive bomber", "Jumping jacks", "Bench Dip", "Bear crawl", "Flanks training", "Squat"];
     var now = 0
     const [current, setCurrent] = useState(0)
     const [status, setStatus] = useState('');

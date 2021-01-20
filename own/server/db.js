@@ -1,7 +1,23 @@
 const low = [
     {
-        exercise: [0, 1],
-        sec: [5, 5]
+        exercise: [2, 5, 7],
+        sec: [7, 3, 6]
+    },
+    {
+        exercise: [0, 3, 4],
+        sec: [6, 8, 9]
+    },
+    {
+        exercise: [6, 5, 1],
+        sec: [5, 10, 8]
+    },
+    {
+        exercise: [1, 2, 3],
+        sec: [9, 8, 9]
+    },
+    {
+        exercise: [4, 5, 6],
+        sec: [8, 9, 8]
     }
 ]
 

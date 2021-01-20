@@ -21,6 +21,7 @@ const useMenu = () => {
     const [day_completion, setDay_completion] = useState([]);
     const [relax, setRelax] = useState(false);
     const [recatch, setRecatch] = useState(false);
+    const [prevday, setPrevday] = useState(0);
 
     const { loading, data, refetch } = useQuery(EXERCISES_QUERY, {
         variables: { strength: strength }
@@ -55,7 +56,7 @@ const useMenu = () => {
         }
         console.log(day)
         setDay(parseInt(node.id) + 1)
-        if (day !== parseInt(node.id) + 1)
+        if (prevday !== parseInt(node.id) + 1)
             setDay_completion(Array(data.queryExercises[parseInt(node.id)].exercise.length).fill(0));
     }
 
@@ -91,8 +92,10 @@ const useMenu = () => {
     const whetheraddcompletion = () => {
         console.log(day_completion)
         const found = day_completion.includes(0);
-        if (!found)
+        if (!found) {
             setCompletion(completion + 1);
+            setDay_completion([]);
+        }
     }
 
     const reset = async () => {
@@ -102,12 +105,6 @@ const useMenu = () => {
                 completion: completion
             }
         })
-        setUsername('');
-        setCompletion(0);
-        setStrength('');
-        setLogin(false);
-        setDays(0);
-        setDay(0);
         window.location.reload();
     }
 
@@ -174,16 +171,27 @@ const useMenu = () => {
         setCompletion(0);
     }
 
+    const percentage = () => {
+        if (prevday > 0) {
+            if (day_completion.length > 0)
+                return (day_completion.filter(e => e === 1).length / day_completion.length * 100);
+            else
+                return 0;
+        }
+        else
+            return 0;
+    }
+
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => { clickday(e) }} low={low} medium={medium} high={high} clear={clearcompletion} />
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} percentage={percentage()} onclick1={reset} onclick2={(e) => { clickday(e) }} low={low} medium={medium} high={high} clear={clearcompletion} />
         else {
             if (click_exercise === -1)
-                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} completion={day_completion} onclick1={() => { whetheraddcompletion(); setDay(0); }} onclick2={(e) => { clickexercise(e) }} />;
+                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} completion={day_completion} onclick1={() => { whetheraddcompletion(); setDay(0); setPrevday(day); }} onclick2={(e) => { clickexercise(e) }} />;
             else {
                 if (!relax)
-                    return <CountingPage limit={data.queryExercises[day - 1].sec[click_exercise] * 10} index={click_exercise} onclick1={backtoMenu} onclick2={relaxation} />
+                    return <CountingPage limit={data.queryExercises[day - 1].sec[click_exercise] * 10} index={data.queryExercises[day - 1].exercise[click_exercise]} onclick1={backtoMenu} onclick2={relaxation} />
                 else
                     return <RelaxPage onclick={() => { setRelax(false) }} />
             }

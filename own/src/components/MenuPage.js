@@ -5,7 +5,7 @@ import './MenuPage.css'
 import { message } from 'antd'
 
 const MenuPage = (props) => {
-    const { username, days, strength, completion, onclick1, onclick2, low, medium, high, clear } = props;
+    const { username, days, strength, completion, onclick1, onclick2, low, medium, high, clear, percentage } = props;
     const [nav, setNav] = useState(false)
     const [status, setStatus] = useState('');
     const [times, setTimes] = useState(0);
@@ -13,6 +13,8 @@ const MenuPage = (props) => {
     for (let i = 0; i < days; ++i) {
         if (i < completion)
             contents.push(100);
+        else if (i == completion)
+            contents.push(parseInt(percentage, 10))
         else
             contents.push(0);
     }
