@@ -38,6 +38,7 @@ const LoginPage = (props) => {
                     <h1>Password:</h1>
                     <Input
                         rows={4}
+                        type="password"
                         value={password}
                         ref={bodyRef}
                         onChange={onChange2}

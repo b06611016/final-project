@@ -3,10 +3,11 @@ import React, { useRef } from 'react'
 import { Button } from 'react-bootstrap'
 import { Input } from 'antd'
 import './FormPage.css'
+import returnimg from "../img/return.png"
 
 const FormPage = (props) => {
     const bodyRef = useRef(null);
-    const { username, password, onChange1, onChange2, onChange3, onChange4, onClick1 } = props;
+    const { username, password, onChange1, onChange2, onChange3, onChange4, onClick1, onClick2 } = props;
     const contents = [
         {
             options: ["high intensity", "medium intensity", "low intensity"],
@@ -19,6 +20,7 @@ const FormPage = (props) => {
     ];
     return (
         <>
+            <img src={returnimg} className="return" type="button" onClick={onClick2}></img>
             <div className="FormPage-title">
                 <h1>Fill in the following information to create your own account!</h1>
             </div>
@@ -41,6 +43,7 @@ const FormPage = (props) => {
                             }}
                         ></Input>
                         <Input
+                            type="password"
                             value={password}
                             ref={bodyRef}
                             onChange={onChange2}

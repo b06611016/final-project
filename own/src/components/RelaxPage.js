@@ -4,7 +4,7 @@ import './RelaxPage.css'
 import relaximg from "../img/relax.jpeg"
 
 const RelaxPage = (props) => {
-    const { username, password } = props;
+    //const { username, password } = props;
     const index = 0
     const worktype = ["Push ups", "Crunch"]
     const l = 200

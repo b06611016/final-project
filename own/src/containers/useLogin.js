@@ -148,12 +148,20 @@ const useLogin = () => {
         setUsername('');
     };
 
+    const returnlogin = () => {
+        setCreate(false);
+        setPassword('');
+        setUsername('');
+        setStrength('');
+        setGender('');
+    };
+
     const loginpage = (
         <LoginPage onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onClick1={setlogin} onClick2={setcreate} username={username} password={password}></LoginPage>
     )
 
     const formpage = (
-        <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => { setstrength(e) }} onChange4={(e) => { setgender(e) }} onClick1={createaccount}></FormPage>
+        <FormPage username={username} password={password} onChange1={(e) => setUsername(e.target.value)} onChange2={(e) => setPassword(e.target.value)} onChange3={(e) => { setstrength(e) }} onChange4={(e) => { setgender(e) }} onClick1={createaccount} onClick2={returnlogin}></FormPage>
     )
 
     return { loginpage, login, create, formpage, menupage };
