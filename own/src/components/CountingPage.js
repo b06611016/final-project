@@ -6,10 +6,8 @@ import returnimg from "../img/return.png"
 
 
 const CountingPage = (props) => {
-    const { username, password } = props;
-    const index = 0
+    const { limit, index, onclick } = props;
     const worktype = ["Push ups", "Crunch"]
-    const limit = 200
     var now = 0
     const [current, setCurrent] = useState(0)
 
