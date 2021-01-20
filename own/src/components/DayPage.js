@@ -7,7 +7,7 @@ import returnimg from "../img/return.png"
 
 const DayPage = (props) => {
     const { day, exercises, strength, onclick1, onclick2, completion } = props;
-    const names = ["Push-ups", "Crunch"];
+    const names = ["Push-ups", "Crunch", "Dive bomber", "Jumping jacks", "Bench Dip", "Bear crawl", "Flanks training", "Squat"];
     console.log(completion)
     return (
         <>
@@ -25,7 +25,7 @@ const DayPage = (props) => {
                             <div className="inButton">
                                 <p id="p">{names[e]}</p>
                             </div>
-                            {completion[index] === 0 ? "":<img src={imgCheck} className="imgCheck"></img>}
+                            {completion[index] === 0 ? "" : <img src={imgCheck} className="imgCheck"></img>}
                         </Button>
                     )
                 })}
