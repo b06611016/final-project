@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 import { EXERCISES_QUERY } from '../graphql'
+import { UPDATE_COMPLETION } from '../graphql'
 import { message } from 'antd'
 import MenuPage from '../components/MenuPage'
 import DayPage from '../components/DayPage'
+import CountingPage from '../components/CountingPage'
+import RelaxPage from '../components/RelaxPage'
 
 const useMenu = () => {
     const [username, setUsername] = useState('');
@@ -12,52 +15,109 @@ const useMenu = () => {
     const [login, setLogin] = useState(false);
     const [days, setDays] = useState(0);
     const [day, setDay] = useState(0);
+    const [click_exercise, setClick_exercise] = useState(-1);
+    const [day_completion, setDay_completion] = useState([]);
+    const [relax, setRelax] = useState(false);
 
     const { loading, data, refetch } = useQuery(EXERCISES_QUERY, {
         variables: { strength: strength }
     });
+    const [updatecompletion] = useMutation(UPDATE_COMPLETION);
 
     const fetchExerciseSchedule = useCallback(() => {
-        if (login)
+        if (login) {
             refetch();
+        }
     }, [login])
 
     useEffect(() => {
         fetchExerciseSchedule();
-        console.log(data)
+        //console.log(data)
         if (data) {
             setDays(data.queryExercises.length);
-            console.log(data.queryExercises)
+            //console.log(data.queryExercises)
         }
     }, [fetchExerciseSchedule, data]);
 
     const clickday = (e) => {
         let node = e.target
-        while (node.tagName != "BUTTON") {
+        while (node.tagName !== "BUTTON") {
             node = node.parentNode
         }
+        console.log(day)
         setDay(parseInt(node.id) + 1)
+        if (day !== parseInt(node.id) + 1)
+            setDay_completion(Array(data.queryExercises[parseInt(node.id)].exercise.length).fill(0));
+    }
+
+    const clickexercise = (e) => {
+        console.log(e)
+        let node = e.target;
+        while (node.tagName !== "BUTTON")
+            node = node.parentNode;
+        setClick_exercise(parseInt(node.id));
+        let array = day_completion;
+        array[parseInt(node.id)] = 0;
+        setDay_completion(array);
+    }
+
+    const backtoMenu = () => {
+        setClick_exercise(-1);
+        let array = day_completion;
+        array[click_exercise] = 1;
+        setDay_completion(array);
+    }
+
+    const relaxation = () => {
+        if (data.queryExercises[day - 1].exercise.length === (click_exercise + 1))
+            setClick_exercise(-1);
+        else {
+            setClick_exercise(click_exercise + 1);
+            setRelax(true);
+        }
+        let array = day_completion;
+        array[click_exercise] = 1;
+        setDay_completion(array);
+    }
+
+    const whetheraddcompletion = () => {
+        console.log(day_completion)
+        const found = day_completion.includes(0);
+        if (!found)
+            setCompletion(completion + 1);
     }
 
     const reset = () => {
+        updatecompletion({
+            variables: {
+                username: username,
+                completion: completion
+            }
+        })
         setUsername('');
         setCompletion(0);
         setStrength('');
         setLogin(false);
         setDays(0);
         setDay(0);
+        window.location.reload();
     }
 
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => {clickday(e)}} />
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => { clickday(e) }} />
         else {
-            if (data && day > 0)
-                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} onclick={() => {setDay(0)}}/>;
+            if (click_exercise === -1)
+                return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} completion={day_completion} onclick1={() => { whetheraddcompletion(); setDay(0); }} onclick2={(e) => { clickexercise(e) }} />;
+            else {
+                if (!relax)
+                    return <CountingPage limit={data.queryExercises[day - 1].sec[click_exercise] * 10} index={click_exercise} onclick1={backtoMenu} onclick2={relaxation} />
+                else
+                    return <RelaxPage onclick={() => { setRelax(false) }} />
+            }
         }
     }
-    //console.log("day: " + day)
     return { username, setUsername, completion, setCompletion, strength, setStrength, login, setLogin, menupage };
 }
 //setDay(parseInt(e.target.key) + 1)

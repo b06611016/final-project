@@ -64,6 +64,7 @@ const useLogin = () => {
             return;
         }
         refetch();
+        console.log(data)
         if (!data)
             return;
         if (data.userCheck._isSuccess) {

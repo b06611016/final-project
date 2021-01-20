@@ -13,3 +13,14 @@ export const CREATE_USER_MUTATION = gql`
         )
     }
 `
+export const UPDATE_COMPLETION = gql`
+    mutation updateCompletion(
+        $username: String!
+        $completion: Int!
+    ){
+        updateCompletion(
+            username: $username
+            completion: $completion
+        )
+    }
+`

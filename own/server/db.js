@@ -1,21 +1,25 @@
 const low = [
     {
-        exercise: ["push up", "jumping jack"],
+        exercise: [0, 1],
         sec: [5, 5]
     }
 ]
 
 const medium = [
     {
-        exercise: ["push up", "jumping jack"],
-        sec: [10, 10]
+        exercise: [0, 1],
+        sec: [15, 10]
     }
 ]
 
 const high = [
     {
-        exercise: ["push up", "jumping jack"],
-        sec: [10, 10]
+        exercise: [0, 1],
+        sec: [15, 15]
+    },
+    {
+        exercise: [0, 1],
+        sec: [15, 15]
     }
 ]
 
