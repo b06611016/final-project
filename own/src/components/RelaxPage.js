@@ -4,9 +4,7 @@ import './RelaxPage.css'
 import relaximg from "../img/relax.jpeg"
 
 const RelaxPage = (props) => {
-    //const { username, password } = props;
-    const index = 0
-    const worktype = ["Push ups", "Crunch"]
+    const { onclick } = props;
     const l = 200
     var temp_cur = 0
     var temp_limit = l
@@ -23,6 +21,8 @@ const RelaxPage = (props) => {
         if (current <= limit) {
             setTimeout(() => { setCurrent(temp_cur) }, 100)
         }
+        else
+            onclick()
     }, [current, limit])
 
     return (
@@ -36,7 +36,7 @@ const RelaxPage = (props) => {
                 </div>
                 <div className="time">
                     <Button variant={"outline-secondary"} onClick={plus20s}>+20s</Button>
-                    <Button variant={"outline-secondary"} onClick={console.log("Skip")}>Skip</Button>
+                    <Button variant={"outline-secondary"} onClick={onclick}>Skip</Button>
                 </div>
             </div>
         </>

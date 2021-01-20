@@ -16,18 +16,36 @@ const MenuPage = (props) => {
             contents.push(0);
     }
 
-    const changestatus = () => {
-        setStatus('invalid');
-        if (status === 'invalid')
-            setTimes(times + 1);
-        else
-            setTimes(1);
+    const changestatus = (e) => {
+        let node = e.target
+        while (node.tagName !== "BUTTON") {
+            node = node.parentNode
+        }
+        if (node.id > completion) {
+            setStatus('invalid');
+            if (status === 'invalid')
+                setTimes(times + 1);
+            else
+                setTimes(1);
+        }
+        else if (node.id < completion){
+            setStatus("success");
+            if (status === 'success')
+                setStatus(times + 1);
+            else
+                setTimes(1);
+        }
     };
 
     const display = useCallback(() => {
         if (status === "invalid" && times > 0)
             message.error({
                 content: "please follow instruction!",
+                duration: 1
+            })
+        else if (status === 'success' && times > 0)
+            message.success({
+                content: "you have done it. Please do the newly assigned!",
                 duration: 1
             })
     }, [status, times]);
@@ -59,7 +77,7 @@ const MenuPage = (props) => {
                         );
                     else
                         return (
-                            <Button variant="secondary" key={index} id={index} onClick={changestatus}>
+                            <Button variant="secondary" key={index} id={index} onClick={(e) => { changestatus(e) }}>
                                 <p id={index} className="P">{"Day " + (index + 1)}</p>
                                 <CircularProgressbar id={index} className="CB" value={e} text={`${e}%`} styles={buildStyles({
                                     textColor: "gold",

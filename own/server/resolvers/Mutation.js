@@ -1,4 +1,4 @@
-import Account from '../models/account'
+import Account, { updateOne } from '../models/account'
 
 export const Mutation = {
     async createUser(parent, { username, password, strength }, context, info) {
@@ -6,6 +6,18 @@ export const Mutation = {
         if (count > 0)
             return false;
         await Account.create({ username: username, password: password, strength: strength, completion: 0 });
+        return true;
+    },
+    async changeStrength(parent, { username, strength }, context, info) {
+        await Account.updateOne({"username": username}, { $set: { "strength": strength, "completion": 0}});
+        return true;
+    },
+    async resetCompletion(parent, { username }, context, info){
+        await Account.updateOne({ "username": username}, { $set: { "completion": 0 }});
+        return true;
+    },
+    async updateCompletion(parent, { username, completion }, content, info){
+        await Account.updateOne({ "username": username }, { $set: { "completion": completion }})
         return true;
     }
 }

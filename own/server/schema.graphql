@@ -5,6 +5,9 @@ type Query {
 
 type Mutation {
     createUser(username: String!, password: String!, strength: String!): Boolean!
+    changeStrength(username: String!, strength: String!): Boolean!
+    resetCompletion(username: String!): Boolean!
+    updateCompletion(username: String!, completion: Int!): Boolean!
 }
 
 type User {
