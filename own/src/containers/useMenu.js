@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useMutation, useQuery } from '@apollo/react-hooks'
 import { EXERCISES_QUERY } from '../graphql'
 import { UPDATE_COMPLETION } from '../graphql'
+import { RESET_COMPLETION } from '../graphql'
+import { CHANGE_STRENGTH } from '../graphql'
 import { message } from 'antd'
 import MenuPage from '../components/MenuPage'
 import DayPage from '../components/DayPage'
@@ -18,17 +20,24 @@ const useMenu = () => {
     const [click_exercise, setClick_exercise] = useState(-1);
     const [day_completion, setDay_completion] = useState([]);
     const [relax, setRelax] = useState(false);
+    const [recatch, setRecatch] = useState(false);
 
     const { loading, data, refetch } = useQuery(EXERCISES_QUERY, {
         variables: { strength: strength }
     });
     const [updatecompletion] = useMutation(UPDATE_COMPLETION);
+    const [resetcompletion] = useMutation(RESET_COMPLETION);
+    const [changestrength] = useMutation(CHANGE_STRENGTH);
 
     const fetchExerciseSchedule = useCallback(() => {
         if (login) {
             refetch();
         }
-    }, [login])
+        else if (recatch) {
+            refetch();
+            setRecatch(false);
+        }
+    }, [login, recatch])
 
     useEffect(() => {
         fetchExerciseSchedule();
@@ -51,7 +60,6 @@ const useMenu = () => {
     }
 
     const clickexercise = (e) => {
-        console.log(e)
         let node = e.target;
         while (node.tagName !== "BUTTON")
             node = node.parentNode;
@@ -87,8 +95,8 @@ const useMenu = () => {
             setCompletion(completion + 1);
     }
 
-    const reset = () => {
-        updatecompletion({
+    const reset = async () => {
+        await updatecompletion({
             variables: {
                 username: username,
                 completion: completion
@@ -103,10 +111,73 @@ const useMenu = () => {
         window.location.reload();
     }
 
+    const low = async () => {
+        if (strength !== 'low') {
+            await changestrength({
+                variables: {
+                    username: username,
+                    strength: 'low'
+                }
+            });
+            setStrength('low');
+            setCompletion(0);
+            setRecatch(true);
+        }
+        else
+            message.error({
+                content: "Such strength is already choosen",
+                duration: 1
+            })
+    }
+
+    const medium = async () => {
+        if (strength !== 'medium') {
+            await changestrength({
+                variables: {
+                    username: username,
+                    strength: 'medium'
+                }
+            });
+            setStrength('medium');
+            setCompletion(0);
+            setRecatch(true);
+        }
+        else
+            message.error({
+                content: "Such strength is already choosen",
+                duration: 1
+            })
+    }
+
+
+    const high = async () => {
+        if (strength !== 'high') {
+            await changestrength({
+                variables: {
+                    username: username,
+                    strength: 'high'
+                }
+            });
+            setStrength('high');
+            setCompletion(0);
+            setRecatch(true);
+        }
+        else
+            message.error({
+                content: "Such strength is already choosen",
+                duration: 1
+            })
+    }
+
+    const clearcompletion = async () => {
+        await resetcompletion({ variables: { username: username } });
+        setCompletion(0);
+    }
+
     const menupage = () => {
         //console.log(day)
         if (day === 0)
-            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => { clickday(e) }} />
+            return <MenuPage username={username} days={days} strength={strength} completion={completion} onclick1={reset} onclick2={(e) => { clickday(e) }} low={low} medium={medium} high={high} clear={clearcompletion} />
         else {
             if (click_exercise === -1)
                 return <DayPage exercises={data.queryExercises[day - 1].exercise} strength={strength} day={day} completion={day_completion} onclick1={() => { whetheraddcompletion(); setDay(0); }} onclick2={(e) => { clickexercise(e) }} />;
