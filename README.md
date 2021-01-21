@@ -39,7 +39,7 @@ yarn server
 
 
 
-## Contact TA and Ric
+## Contact Me
 
 If you have any question or error regarding to this final project, please contact shes94069@gmail.com 
 
