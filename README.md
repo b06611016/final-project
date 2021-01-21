@@ -35,6 +35,8 @@ yarn server
 
 2. If there are any errors, you could first try to refresh the whole page since some data may not be updated!
 
+3. You should fill your mongoURL to complete the service!
+
 
 
 ## Contact TA and Ric
