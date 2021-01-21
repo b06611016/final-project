@@ -1,5 +1,5 @@
-import Account from '../models/account'
-export const Query = {
+const Account = require('../models/account')
+const Query = {
     async userCheck(parent, { username, password }, context, info){
         //console.log(context.database)
         let user = await Account.find({ username: username, password: password });
@@ -27,3 +27,5 @@ export const Query = {
             return data.medium;
     }
 }
+
+module.exports = Query;

@@ -1,6 +1,7 @@
-import Account, { updateOne } from '../models/account'
+const Account = require('../models/account')
+const { updateOne } = require('../models/account')
 
-export const Mutation = {
+const Mutation = {
     async createUser(parent, { username, password, strength }, context, info) {
         let count = await Account.find({ username: username });
         if (count.length > 0)
@@ -21,3 +22,5 @@ export const Mutation = {
         return true;
     }
 }
+
+module.exports = Mutation;

@@ -23,19 +23,47 @@ const low = [
 
 const medium = [
     {
-        exercise: [0, 1],
-        sec: [15, 10]
+        exercise: [0, 1, 2, 3],
+        sec: [15, 20, 20, 25]
+    },
+    {
+        exercise: [4, 5, 6, 7],
+        sec: [15, 20, 20, 25]
+    },
+    {
+        exercise: [0, 2, 4, 6],
+        sec: [15, 20, 20, 25]
+    },
+    {
+        exercise: [1, 3, 5, 7],
+        sec: [15, 20, 20, 25]
+    },
+    {
+        exercise: [0, 5, 6, 7],
+        sec: [15, 20, 20, 25]
     }
 ]
 
 const high = [
     {
-        exercise: [1, 0],
-        sec: [10, 15]
+        exercise: [4, 5, 6, 7],
+        sec: [25, 30, 35, 35]
     },
     {
-        exercise: [0, 1],
-        sec: [15, 15]
+        exercise: [0, 1, 2, 3],
+        sec: [25, 30, 35, 35]
+    },
+    {
+        exercise: [1, 3, 5, 7],
+        sec: [25, 30, 35, 35]
+    },
+    {
+        exercise: [0, 2, 4, 6],
+        sec: [25, 30, 35, 35]
+    },
+    {
+        exercise: [2, 3, 4, 5],
+        sec: [25, 30, 35, 35]
     }
 ]
 
@@ -45,4 +73,4 @@ const data = {
     high
 }
 
-export { data as default }
+module.exports = data

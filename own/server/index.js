@@ -1,8 +1,8 @@
-import express from 'express'
-import { GraphQLServer, PubSub } from 'graphql-yoga'
-import { Query } from './resolvers/Query'
-import { Mutation } from './resolvers/Mutation'
-import data from './db'
+const express = require('express')
+const { GraphQLServer, PubSub } = require('graphql-yoga')
+const Query = require('./resolvers/Query')
+const Mutation = require('./resolvers/Mutation')
+const data = require('./db')
 //import { Subscription } from './resolvers/Subscription'
 require('dotenv-defaults').config()
 

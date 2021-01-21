@@ -89,11 +89,17 @@ const useMenu = () => {
         setDay_completion(array);
     }
 
-    const whetheraddcompletion = () => {
+    const whetheraddcompletion = async () => {
         console.log(day_completion)
         const found = day_completion.includes(0);
         if (!found) {
             setCompletion(completion + 1);
+            await updatecompletion({
+                variables: {
+                    username: username,
+                    completion: completion + 1
+                }
+            })
             setDay_completion([]);
         }
     }
