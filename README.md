@@ -73,20 +73,40 @@ USER PROFILE：
 像是要規劃各個頁面的點擊行為，及各種error message去提醒使用者正確使用方式，還有一些useEffect之間的邏輯問題，
 藉由這次的專題可以學到很多之前沒注意到的細節，而對於這次的project，後端就沒有到多難，因此在實行上並沒有為此造成太大的困難。
 分工表(contribution)
-· 陳嘉佑：
+· 陳嘉佑(Contribution rate:50%)：
 主要為刻網頁內部邏輯，為useMenu及useLogin和後端程序碼，我們這組都是一個人調整css，
 另一個人寫內部邏輯將其串起，兩個的貢獻度幾乎是一樣，皆為5050。
-· 張鑫揚：
-刻外觀及些許按鈕功能，將MenuPage中可以轉換到profile及menu的按鈕，還有倒數計時的功能，及所有網頁的css外觀。
+· 張鑫揚(Contribution rate:50%)：
+負責網頁UI/UX設計，主要著重於調整各頁面外觀的html與CSS，並建立頁面的一些基礎功能，如部分換頁功能、倒計時等。採用的分工方法
+為先把前端會用到database的部分先寫死(但仍是用map的方式，可依資料庫array大小進行調整)，然後先依序設計完所有頁面，同時可以把
+已經設計好的頁面交給組員，告知一些我本來寫死但加入database會動到的地方，組員再依這些地方去串接內部邏輯，用react去設計網頁邏輯
+架構，最終完成此次的期末專題。所設計所有的頁面如下所示：
+· LoginPage：
+    登入頁面，可以讓使用者填入使用者名稱與密碼，下方的兩個按鈕一個是登入，另一個是創建帳戶，按下去後會進入FormPage。
+    
+· FormPage：
+    創建帳戶頁面，會請新用戶填入用戶名、密碼、運動強度與性別。
+    
+· MenuPage：
+    個人主頁，上方有一個Navbar，有三個小頁面可以切換，從左邊數來第一個下方是進入各天訓練菜單的按鈕，其中按鈕右方有一個Circular 
+bar是當天的訓練完成比率。第二個是個人基本資料，其中包含了四個元素，分別是用戶名、當前訓練強度、重設進度鈕與重設運動強度下拉式選
+單。第三個是登出鈕，也就是按了會回到LoginPage。
+
+· DayPage：
+    當天的訓練菜單頁面，下方有不同運動的按鈕，代表是今日的運動菜單，點擊即會進入數秒頁面。
+    
+· CountingPage：
+    數秒頁面，上方會有Gif動圖教你這個運動的動作該如何完成，此外下方的讀秒進度條是透過結合settimeout()與react-bootstrap的
+progress bar去完成，當讀秒結束後下方的next button才會顯示，按下next button進入休息頁面。
+
+· RelaxPage
+    休息頁面，具有普通的讀秒功能，有一個加秒鍵能讓用戶自己加秒，還有一個跳過鍵能讓用戶自行決定是否跳過休息。
+    
+
 · 未來願景：
 • 希望之後可以把燃燒卡路理加進來，及豐富運動課表內容
 • 可以自己規劃訓練菜單
 • 可以再規劃一個platform去更新個難度訓練菜單內容
-```
-7. deploy link:
-[link](https://hsinyang0816.github.io/final-project/)
-```
-https://hsinyang0816.github.io/final-project/
 ```
 ## Remind
 1. You should first complete your day's working schedule. Then, you could keep continuing doing if you want! However, if you didn't complete day's schedule, then we would not save your progress since we hope that you could complete it first and then log out.
