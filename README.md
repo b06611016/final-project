@@ -83,6 +83,11 @@ USER PROFILE：
 • 可以自己規劃訓練菜單
 • 可以再規劃一個platform去更新個難度訓練菜單內容
 ```
+7. deploy link:
+[link](https://hsinyang0816.github.io/final-project/)
+```
+https://hsinyang0816.github.io/final-project/
+```
 ## Remind
 1. You should first complete your day's working schedule. Then, you could keep continuing doing if you want! However, if you didn't complete day's schedule, then we would not save your progress since we hope that you could complete it first and then log out.
 
